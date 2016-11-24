@@ -1,6 +1,7 @@
 package jp.co.bizreach
 
 import com.amazonaws.services.dynamodbv2.model.Condition
+import scala.language.implicitConversions
 
 package object dynamodb4s {
 

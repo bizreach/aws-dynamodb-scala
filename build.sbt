@@ -2,24 +2,28 @@ name := "aws-dynamodb-scala"
 
 organization := "jp.co.bizreach"
 
-version := "0.0.4"
+version := "0.0.5-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.0"
+
+crossScalaVersions := Seq("2.11.8", "2.12.0")
 
 libraryDependencies ++= Seq(
   "org.scala-lang"     %  "scala-reflect" % scalaVersion.value,
-  "com.github.seratch" %% "awscala"       % "0.5.8"
+  "com.github.seratch" %% "awscala"       % "0.5.9"
 )
 
 publishMavenStyle := true
 
-publishTo <<= version { (v: String) =>
+publishTo := {
   val nexus = "https://oss.sonatype.org/"
-  if (v.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else                             Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+  if (version.value.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
 
-scalacOptions := Seq("-deprecation")
+scalacOptions := Seq("-deprecation", "-feature")
 
 publishArtifact in Test := false
 
