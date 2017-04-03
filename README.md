@@ -62,7 +62,7 @@ Members.putAttributes("Japan", 1){ t =>
 
 ```scala
 // Query with case class mapping
-val list: Seq[Member] = Members.query.keyConditions { t =>
+val list: Seq[Member] = Members.query.filter { t =>
   t.country -> DynamoDBCondition.eq("Japan") :: t.id -> DynamoDBCondition.eq(1) :: Nil
 }.list[Member]
 
