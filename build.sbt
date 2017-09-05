@@ -2,13 +2,13 @@ name := "aws-dynamodb-scala"
 
 organization := "jp.co.bizreach"
 
-version := "0.0.5"
+version := "0.0.6-SNAPSHOT"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.3"
 
 libraryDependencies ++= Seq(
   "org.scala-lang"     %  "scala-reflect" % scalaVersion.value,
-  "com.github.seratch" %% "awscala"       % "0.5.9"
+  "com.github.seratch" %% "awscala"       % "0.6.1"
 )
 
 publishMavenStyle := true
