@@ -2,9 +2,11 @@ name := "aws-dynamodb-scala"
 
 organization := "jp.co.bizreach"
 
-version := "0.0.6-SNAPSHOT"
+version := "0.0.6"
 
 scalaVersion := "2.12.3"
+
+crossScalaVersions := Seq("2.11.9", "2.12.3")
 
 libraryDependencies ++= Seq(
   "org.scala-lang"     %  "scala-reflect" % scalaVersion.value,
