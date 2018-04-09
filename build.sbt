@@ -4,13 +4,13 @@ organization := "jp.co.bizreach"
 
 version := "0.0.7-SNAPSHOT"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.5"
 
-crossScalaVersions := Seq("2.11.11", scalaVersion.value)
+crossScalaVersions := Seq("2.11.12", scalaVersion.value)
 
 libraryDependencies ++= Seq(
   "org.scala-lang"     %  "scala-reflect" % scalaVersion.value,
-  "com.github.seratch" %% "awscala"       % "0.6.1"
+  "com.github.seratch" %% "awscala"       % "0.6.3"
 )
 
 publishMavenStyle := true
