@@ -2,7 +2,7 @@ name := "aws-dynamodb-scala"
 
 organization := "jp.co.bizreach"
 
-version := "0.0.7-SNAPSHOT"
+version := "0.0.7"
 
 scalaVersion := "2.12.5"
 
