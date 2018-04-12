@@ -1,6 +1,5 @@
 name := "aws-dynamodb-scala"
 organization := "jp.co.bizreach"
-version := "0.0.7"
 scalaVersion := "2.12.5"
 crossScalaVersions := Seq("2.11.12", scalaVersion.value)
 
@@ -32,6 +31,7 @@ pomExtra := (
   </developers>
 )
 pomIncludeRepository := { _ => false }
+publishMavenStyle := true
 homepage := Some(url(s"https://github.com/bizreach/aws-dynamodb-scala"))
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.html"))
 
