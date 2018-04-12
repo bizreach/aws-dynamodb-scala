@@ -32,6 +32,7 @@ pomExtra := (
 )
 pomIncludeRepository := { _ => false }
 publishMavenStyle := true
+publishTo := sonatypePublishTo.value
 homepage := Some(url(s"https://github.com/bizreach/aws-dynamodb-scala"))
 licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.html"))
 
