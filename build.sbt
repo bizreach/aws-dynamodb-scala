@@ -37,7 +37,7 @@ licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.
 
 sonatypeProfileName := organization.value
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
-releaseTagName := s"redis-${(version in ThisBuild).value}"
+releaseTagName := (version in ThisBuild).value
 releaseCrossBuild := true
 
 import ReleaseTransformations._
