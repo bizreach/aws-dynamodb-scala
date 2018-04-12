@@ -1,11 +1,7 @@
 name := "aws-dynamodb-scala"
-
 organization := "jp.co.bizreach"
-
 version := "0.0.7"
-
 scalaVersion := "2.12.5"
-
 crossScalaVersions := Seq("2.11.12", scalaVersion.value)
 
 libraryDependencies ++= Seq(
@@ -13,45 +9,48 @@ libraryDependencies ++= Seq(
   "com.github.seratch" %% "awscala"       % "0.6.3"
 )
 
-publishMavenStyle := true
-
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (version.value.endsWith("SNAPSHOT"))
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
-
 scalacOptions := Seq("-deprecation", "-feature")
 
-publishArtifact in Test := false
-
-pomIncludeRepository := { _ => false }
-
 pomExtra := (
-  <url>https://github.com/bizreach/aws-dynamodb-scala</url>
-    <licenses>
-      <license>
-        <name>The Apache Software License, Version 2.0</name>
-        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      </license>
-    </licenses>
-    <scm>
-      <url>https://github.com/bizreach/aws-dynamodb-scala</url>
-      <connection>scm:git:https://github.com/bizreach/aws-dynamodb-scala.git</connection>
-    </scm>
-    <developers>
-      <developer>
-        <id>takezoe</id>
-        <name>Naoki Takezoe</name>
-        <email>naoki.takezoe_at_bizreach.co.jp</email>
-        <timezone>+9</timezone>
-      </developer>
-      <developer>
-        <id>shimamoto</id>
-        <name>Takako Shimamoto</name>
-        <email>takako.shimamoto_at_bizreach.co.jp</email>
-        <timezone>+9</timezone>
-      </developer>
-    </developers>)
+  <scm>
+    <url>https://github.com/bizreach/aws-dynamodb-scala</url>
+    <connection>scm:git:https://github.com/bizreach/aws-dynamodb-scala.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>takezoe</id>
+      <name>Naoki Takezoe</name>
+      <email>naoki.takezoe_at_bizreach.co.jp</email>
+      <timezone>+9</timezone>
+    </developer>
+    <developer>
+      <id>shimamoto</id>
+      <name>Takako Shimamoto</name>
+      <email>takako.shimamoto_at_bizreach.co.jp</email>
+      <timezone>+9</timezone>
+    </developer>
+  </developers>
+)
+pomIncludeRepository := { _ => false }
+homepage := Some(url(s"https://github.com/bizreach/aws-dynamodb-scala"))
+licenses := Seq("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+
+sonatypeProfileName := organization.value
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+releaseTagName := s"redis-${(version in ThisBuild).value}"
+releaseCrossBuild := true
+
+import ReleaseTransformations._
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  publishArtifacts,
+  releaseStepCommand("sonatypeRelease"),
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
+)
