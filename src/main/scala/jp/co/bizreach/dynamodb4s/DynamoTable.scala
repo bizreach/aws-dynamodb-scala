@@ -1,7 +1,6 @@
 package jp.co.bizreach.dynamodb4s
 
-import com.amazonaws.services.dynamodbv2.model.{QueryRequest, Select, AttributeValue}
-import com.amazonaws.services.dynamodbv2.model.Condition
+import com.amazonaws.services.dynamodbv2.model.AttributeValue
 import scala.collection.JavaConverters._
 
 import reflect.ClassTag
