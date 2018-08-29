@@ -1,4 +1,4 @@
-aws-dynamodb-scala
+aws-dynamodb-scala [![Build Status](https://travis-ci.org/bizreach/aws-dynamodb-scala.svg?branch=master)](https://travis-ci.org/bizreach/aws-dynamodb-scala)
 ==========
 
 Scala client for Amazon DynamoDB
