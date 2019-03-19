@@ -8,7 +8,7 @@ Scala client for Amazon DynamoDB
 Add a following dependency into your `build.sbt` at first.
 
 ```scala
-libraryDependencies += "jp.co.bizreach" %% "aws-dynamodb-scala" % "0.0.7"
+libraryDependencies += "jp.co.bizreach" %% "aws-dynamodb-scala" % "0.0.8"
 ```
 
 Then you can use aws-dynamodb-scala in your code.
