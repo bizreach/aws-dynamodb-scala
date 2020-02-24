@@ -59,7 +59,7 @@ class DynamoDBTest extends FunSuite with BeforeAndAfter {
 
   test("Query using secondary index"){
     val result = Members.query.filter2(_.companyIndex){ t =>
-      t.country -> DynamoDBCondition.eq("Japan") :: t.company -> DynamoDBCondition.eq("BizReach") :: Nil
+      t.country -> DynamoDBCondition.eq(values = "Japan") :: t.company -> DynamoDBCondition.eq(values = "BizReach") :: Nil
     }.list[Member]
 
     assert(result.size == 2)
@@ -72,7 +72,7 @@ class DynamoDBTest extends FunSuite with BeforeAndAfter {
   test("Query using DynamoDBCondition"){
     val result = Members.query
       .select { t => t.id :: t.country :: t.name :: t.company :: Nil }
-      .filter(_.country -> DynamoDBCondition.eq("Japan"))
+      .filter(_.country -> DynamoDBCondition.eq(values = "Japan"))
       .limit(100000)
       .map { (t, x) =>
         (x.get(t.id), x.get(t.country), x.get(t.name), x.get(t.company))
@@ -101,12 +101,12 @@ class DynamoDBTest extends FunSuite with BeforeAndAfter {
     Members.put(Member("U.S.", 4, "Bob", 36, None))
 
     val alice = Members.query.filter { t =>
-      t.country -> DynamoDBCondition.eq("U.S.") :: t.id -> DynamoDBCondition.eq(3) :: Nil
+      t.country -> DynamoDBCondition.eq(values = "U.S.") :: t.id -> DynamoDBCondition.eq(values = 3) :: Nil
     }.firstOption[Member]
     assert(alice contains Member("U.S.", 3, "Alice", 23, Some("Google")))
 
     val bob = Members.query.filter { t =>
-      t.country -> DynamoDBCondition.eq("U.S.") :: t.id -> DynamoDBCondition.eq(4) :: Nil
+      t.country -> DynamoDBCondition.eq(values = "U.S.") :: t.id -> DynamoDBCondition.eq(values = 4) :: Nil
     }.firstOption[Member]
     assert(bob contains Member("U.S.", 4, "Bob", 36, None))
   }
@@ -117,7 +117,7 @@ class DynamoDBTest extends FunSuite with BeforeAndAfter {
     }
 
     val m = Members.query.filter { t =>
-      t.country -> DynamoDBCondition.eq("Japan") :: t.id -> DynamoDBCondition.eq(1) :: Nil
+      t.country -> DynamoDBCondition.eq(values = "Japan") :: t.id -> DynamoDBCondition.eq(values = 1) :: Nil
     }.firstOption[Member]
     assert(m contains Member("Japan", 1, "Naoki", 37, Some("BizReach")))
   }
@@ -126,7 +126,7 @@ class DynamoDBTest extends FunSuite with BeforeAndAfter {
     Members.delete("Japan", 1)
 
     val m = Members.query.filter { t =>
-      t.country -> DynamoDBCondition.eq("Japan") :: t.id -> DynamoDBCondition.eq(1) :: Nil
+      t.country -> DynamoDBCondition.eq(values = "Japan") :: t.id -> DynamoDBCondition.eq(values = 1) :: Nil
     }.firstOption[Member]
     assert(m.isEmpty)
   }
