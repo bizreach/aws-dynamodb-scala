@@ -35,7 +35,7 @@ case class DynamoQueryBuilder[T <: DynamoTable](
     val items  = db.query(createRequest(_attributes(_table).map(_.name))).getItems
     items.asScala.map { item =>
       mapper(_table, new DynamoRow(item))
-    }
+    }.toSeq
   }
 
   def list[E <: AnyRef](implicit db: awscala.dynamodbv2.DynamoDB, c: ClassTag[E]): Seq[E] = as
@@ -72,7 +72,7 @@ case class DynamoQueryBuilder[T <: DynamoTable](
         }
       }
       o.asInstanceOf[E]
-    }
+    }.toSeq
   }
 
   protected def createRequest(attributes: Seq[String]): QueryRequest = {
